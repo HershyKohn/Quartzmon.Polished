@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Quartzmin.SelfHost\Quartzmin.SelfHost.csproj" />
+    <ProjectReference Include="..\..\Quartzmon.SelfHost\Quartzmon.SelfHost.csproj" />
   </ItemGroup>
 
   <ItemGroup>

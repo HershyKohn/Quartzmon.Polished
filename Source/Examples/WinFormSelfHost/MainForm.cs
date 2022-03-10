@@ -1,5 +1,5 @@
 ﻿using Quartz;
-using Quartzmin;
+using Quartzmon;
 using System;
 using System.Windows.Forms;
 

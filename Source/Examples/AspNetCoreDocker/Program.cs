@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Quartzmin;
+using Quartzmon;
 using System.Threading;
 
 namespace AspNetCoreDocker
@@ -13,11 +13,11 @@ namespace AspNetCoreDocker
 
             var host = WebHost.CreateDefaultBuilder(args).Configure(app => 
             {
-                app.UseQuartzmin(new QuartzminOptions() { Scheduler = scheduler });
+                app.UseQuartzmon(new QuartzmonOptions() { Scheduler = scheduler });
 
             }).ConfigureServices(services => 
             {
-                services.AddQuartzmin();
+                services.AddQuartzmon();
 
             })
             .Build();
@@ -32,11 +32,11 @@ namespace AspNetCoreDocker
 }
 
 /*
-docker run -d -p 9999:80 --name myapp quartzmin
+docker run -d -p 9999:80 --name myapp quartzmon
 docker exec -it myapp sh
 
-docker run -it --rm -p 9999:80 --name myapp quartzmin
+docker run -it --rm -p 9999:80 --name myapp quartzmon
 
-docker tag quartzmin docker:5000/quartzmin
-docker push docker:5000/quartzmin
+docker tag quartzmon docker:5000/quartzmon
+docker push docker:5000/quartzmon
 */

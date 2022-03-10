@@ -1,16 +1,16 @@
 ﻿using Microsoft.Owin;
 using Owin;
-using Quartzmin.AspNet;
+using Quartzmon.AspNet;
 
 [assembly: OwinStartup(typeof(Startup))]
 
-namespace Quartzmin.AspNet
+namespace Quartzmon.AspNet
 {
     public class Startup
     {
         public void Configuration(IAppBuilder app)
         {
-            app.UseQuartzmin(new QuartzminOptions()
+            app.UseQuartzmon(new QuartzmonOptions()
             {
                 Scheduler = DemoScheduler.Create().Result,
 

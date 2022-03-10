@@ -1,4 +1,4 @@
-﻿using Quartzmin;
+﻿using Quartzmon;
 using System.Threading;
 
 namespace NetCoreSelfHost

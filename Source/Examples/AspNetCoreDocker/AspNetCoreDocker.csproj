@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerDefaultContext>..\..\..</DockerDefaultContext>
-    <DockerDefaultTag>quartzmin</DockerDefaultTag>
+    <DockerDefaultTag>quartzmon</DockerDefaultTag>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Quartzmin\Quartzmin.csproj" />
+    <ProjectReference Include="..\..\Quartzmon\Quartzmon.csproj" />
   </ItemGroup>
   
   <ItemGroup>

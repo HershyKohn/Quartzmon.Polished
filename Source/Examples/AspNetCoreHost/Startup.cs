@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Quartzmin.AspNetCore
+namespace Quartzmon.AspNetCore
 {
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddQuartzmin();
+            services.AddQuartzmon();
         }
 
         public void Configure(IApplicationBuilder app)
         {
-            app.UseQuartzmin(new QuartzminOptions()
+            app.UseQuartzmon(new QuartzmonOptions()
             {
                 UseLocalTime = true,
                 Scheduler = DemoScheduler.Create().Result,

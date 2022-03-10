@@ -113,9 +113,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Quartzmin.SelfHost\Quartzmin.SelfHost.csproj">
+    <ProjectReference Include="..\..\Quartzmon.SelfHost\Quartzmon.SelfHost.csproj">
       <Project>{89097967-adcb-4b14-8497-eb336c6c4cb3}</Project>
-      <Name>Quartzmin.SelfHost</Name>
+      <Name>Quartzmon.SelfHost</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

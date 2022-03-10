@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Quartzmin
+namespace Quartzmon
 {
     public static class DemoScheduler
     {

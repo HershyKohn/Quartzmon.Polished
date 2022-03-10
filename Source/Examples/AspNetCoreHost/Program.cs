@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Quartzmin.AspNetCore
+namespace Quartzmon.AspNetCore
 {
     class Program
     {

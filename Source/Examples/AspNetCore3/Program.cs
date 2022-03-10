@@ -8,7 +8,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Quartzmin;
+using Quartzmon;
 
 namespace AspNetCore3
 {
@@ -20,11 +20,11 @@ namespace AspNetCore3
 
 			var host = WebHost.CreateDefaultBuilder( args ).Configure( app =>
 				{
-					app.UseQuartzmin( new QuartzminOptions() { Scheduler = scheduler } );
+					app.UseQuartzmon( new QuartzmonOptions() { Scheduler = scheduler } );
 
 				} ).ConfigureServices( services =>
 				{
-					services.AddQuartzmin();
+					services.AddQuartzmon();
 
 				} )
 				.Build();

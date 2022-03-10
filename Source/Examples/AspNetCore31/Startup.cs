@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Quartzmin;
+using Quartzmon;
 
 namespace AspNetCore31
 {
@@ -24,7 +24,7 @@ namespace AspNetCore31
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddQuartzmin();
+            services.AddQuartzmon();
 
         }
 
@@ -44,7 +44,7 @@ namespace AspNetCore31
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
-            app.UseQuartzmin(new QuartzminOptions() { Scheduler = scheduler, VirtualPathRoot = "/Quartzmin" , UseLocalTime =true, DefaultDateFormat="yyyy-MM-dd", DefaultTimeFormat="HH:mm:ss" });
+            app.UseQuartzmon(new QuartzmonOptions() { Scheduler = scheduler, VirtualPathRoot = "/Quartzmon" , UseLocalTime =true, DefaultDateFormat="yyyy-MM-dd", DefaultTimeFormat="HH:mm:ss" });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
