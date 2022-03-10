@@ -4,9 +4,13 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-#if NETSTANDARD
+#if (NETSTANDARD || NETCOREAPP)
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
+#endif
+
+#if NETCOREAPP
+using Microsoft.AspNetCore.Builder;
 #endif
 
 namespace Quartzmin.SelfHost
@@ -36,6 +40,28 @@ namespace Quartzmin.SelfHost
         public Task Start(CancellationToken cancellationToken = default(CancellationToken))
         {
             var host = Microsoft.AspNetCore.WebHost.CreateDefaultBuilder().Configure(app => {
+                app.UseQuartzmin(CreateQuartzminOptions());
+            }).ConfigureServices(services => {
+                services.AddQuartzmin();
+            })
+            .ConfigureLogging(logging => {
+                logging.ClearProviders();
+            })
+            .UseUrls(Url)
+            .Build();
+
+            _webApp = host;
+
+            return host.StartAsync();
+        }
+#endif
+
+#if NETCOREAPP
+        public Task Start(CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var host = Microsoft.AspNetCore.WebHost.CreateDefaultBuilder().Configure(app => {
+                app.UseStaticFiles();
+                app.UseRouting();
                 app.UseQuartzmin(CreateQuartzminOptions());
             }).ConfigureServices(services => {
                 services.AddQuartzmin();
