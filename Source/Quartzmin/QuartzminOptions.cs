@@ -18,7 +18,7 @@ namespace Quartzmin
 
         public string ProductName { get; set; } = "";
 
-        public string VirtualPathRoot { get; set; } = "/";
+        public string VirtualPathRoot { get; set; } = "";
 
         public IScheduler Scheduler { get; set; }
 
