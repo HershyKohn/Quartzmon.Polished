@@ -1,10 +1,11 @@
-﻿using Quartz.Impl.Matchers;
+﻿using Quartz;
+using Quartz.Impl.Matchers;
 using Quartz.Spi;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Quartz.Plugins.Quartzmon.RecentHistory
+namespace Quartzmon.Plugins.RecentHistory
 {
     public class ExecutionHistoryPlugin : ISchedulerPlugin, IJobListener
     {

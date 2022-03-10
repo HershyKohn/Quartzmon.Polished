@@ -1,4 +1,4 @@
-﻿using Quartz.Plugins.Quartzmon.RecentHistory;
+﻿using Quartzmon.Plugins.RecentHistory;
 using System;
 using System.Linq;
 using System.Collections.Generic;

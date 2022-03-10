@@ -41,7 +41,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Quartz.Plugins.Quartzmon.RecentHistory\Quartz.Plugins.Quartzmon.RecentHistory.csproj" />
+		<ProjectReference Include="..\Quartzmon.Plugins.RecentHistory\Quartzmon.Plugins.RecentHistory.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

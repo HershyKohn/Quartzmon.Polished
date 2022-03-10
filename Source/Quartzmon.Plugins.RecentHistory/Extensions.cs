@@ -1,5 +1,6 @@
-﻿
-namespace Quartz.Plugins.Quartzmon.RecentHistory
+﻿using Quartz;
+
+namespace Quartzmon.Plugins.RecentHistory
 {
     public static class Extensions
     {

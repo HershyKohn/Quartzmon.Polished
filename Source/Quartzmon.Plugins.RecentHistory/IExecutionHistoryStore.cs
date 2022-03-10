@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Quartz.Plugins.Quartzmon.RecentHistory
+namespace Quartzmon.Plugins.RecentHistory
 {
     [Serializable]
     public class ExecutionHistoryEntry

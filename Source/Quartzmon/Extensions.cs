@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Quartz.Impl.Matchers;
-using Quartz.Plugins.Quartzmon.RecentHistory;
+using Quartzmon.Plugins.RecentHistory;
 
 #region Target-Specific Directives
 #if ( NETSTANDARD || NETCOREAPP )

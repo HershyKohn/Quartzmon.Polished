@@ -109,9 +109,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Quartz.Plugins.Quartzmon.RecentHistory\Quartz.Plugins.Quartzmon.RecentHistory.csproj">
+    <ProjectReference Include="..\..\Quartzmon.Plugins.RecentHistory\Quartzmon.Plugins.RecentHistory.csproj">
       <Project>{43c177e2-88fb-47cd-abb3-4a229b969609}</Project>
-      <Name>Quartz.Plugins.Quartzmon.RecentHistory</Name>
+      <Name>Quartzmon.Plugins.RecentHistory</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Quartzmon\Quartzmon.csproj">
       <Project>{e14f97e0-8b3b-43a2-9820-2f4b94497253}</Project>

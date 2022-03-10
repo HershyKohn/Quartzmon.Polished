@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quartzmon", "Source\Quartzmon\Quartzmon.csproj", "{E14F97E0-8B3B-43A2-9820-2F4B94497253}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quartz.Plugins.Quartzmon.RecentHistory", "Source\Quartz.Plugins.Quartzmon.RecentHistory\Quartz.Plugins.Quartzmon.RecentHistory.csproj", "{43C177E2-88FB-47CD-ABB3-4A229B969609}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quartzmon.Plugins.RecentHistory", "Source\Quartzmon.Plugins.RecentHistory\Quartzmon.Plugins.RecentHistory.csproj", "{43C177E2-88FB-47CD-ABB3-4A229B969609}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quartzmon.SelfHost", "Source\Quartzmon.SelfHost\Quartzmon.SelfHost.csproj", "{89097967-ADCB-4B14-8497-EB336C6C4CB3}"
 EndProject

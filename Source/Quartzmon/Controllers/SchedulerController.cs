@@ -1,7 +1,7 @@
 ﻿using Quartz;
 using Quartzmon.Helpers;
 using Quartzmon.Models;
-using Quartz.Plugins.Quartzmon.RecentHistory;
+using Quartzmon.Plugins.RecentHistory;
 using Quartz.Impl.Matchers;
 using System;
 using System.Linq;

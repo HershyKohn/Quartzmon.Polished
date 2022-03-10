@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Quartz.Plugins.Quartzmon.RecentHistory.Impl
+namespace Quartzmon.Plugins.RecentHistory.Impl
 {
     [Serializable]
     public class InProcExecutionHistoryStore : IExecutionHistoryStore
