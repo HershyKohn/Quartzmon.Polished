@@ -1,26 +1,30 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/jlucansky/public-assets/master/Quartzmin/logo.png" height="150">
+    <h1>Quartzmon</h1>
 </p>
 
 ---
 
-[![NuGet](https://img.shields.io/nuget/v/QuartzminFork.svg)](https://www.nuget.org/packages/QuartzminFork)
+[![NuGet](https://img.shields.io/nuget/v/Quartzmon.svg)](https://www.nuget.org/packages/Quartzmon/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-QuartzminFork is  fork from Quartzmin!
+Quartzmon is a fork of [Quartzmin](https://github.com/jlucansky/Quartzmin).
 
+This fork was created to add the following features:
+- Support for .NET Core 3.1, including for the SelfHost package
+- Use local time instead of UTC, as well as date formatting
+- Create a new forked Nuget package to make these features available easily via Nuget
 
-Quartzmin is powerful, easy to use web management tool for Quartz.NET
+Quartzmon is powerful, easy to use web management tool for Quartz.NET
 
-Quartzmin can be used within your existing application with minimum effort as a Quartz.NET plugin when it automatically creates embedded web server. Or it can be plugged into your existing OWIN-based web application as a middleware.
+Quartzmon can be used within your existing application with minimum effort as a Quartz.NET plugin when it automatically creates embedded web server. Or it can be plugged into your existing OWIN-based web application as a middleware.
 
 > [Quartz.NET](https://www.quartz-scheduler.net) is a full-featured, open source job scheduling system that can be used from smallest apps to large scale enterprise systems.
 
 ![Demo](https://raw.githubusercontent.com/jlucansky/public-assets/master/Quartzmin/demo.gif)
 
-The goal of this project is to provide convenient tool to utilize most of the functionality that Quartz.NET enables. The biggest challenge was to create a simple yet effective editor of job data map which is heart of Quartz.NET. Every job data map item is strongly typed and Quartzmin can be easily extended with a custom editor for your specific type beside standard supported types such as String, Integer, DateTime and so on. 
+The goal of this project is to provide convenient tool to utilize most of the functionality that Quartz.NET enables. The biggest challenge was to create a simple yet effective editor of job data map which is heart of Quartz.NET. Every job data map item is strongly typed and Quartzmon can be easily extended with a custom editor for your specific type beside standard supported types such as String, Integer, DateTime and so on. 
 
-Quartzmin was created with **Semantic UI** and **Handlebars.Net** as the template engine.
+Quartzmon was created with **Semantic UI** and **Handlebars.Net** as the template engine.
 
 ## Features
 - Add, modify jobs and triggers
@@ -39,23 +43,24 @@ Quartzmin was created with **Semantic UI** and **Handlebars.Net** as the templat
 - See recent job history, state and error messages
 
 ## Install
-Quartzmin is available on [nuget.org](https://www.nuget.org/packages/QuartzminFork)
+Quartzmon is available on [nuget.org](https://www.nuget.org/packages/Quartzmon/)
 
-To install QuartzminFork, run the following command in the Package Manager Console
+To install Quartzmon, run the following command in the Package Manager Console
 ```powershell
-PM> Install-Package QuartzminFork
+PM> Install-Package Quartzmon
 ```
 ## Minimum requirements
 - .NET Framework 4.5.2 
 - .NET Standard 2.0
+- .NET Core 2.0
 
 ## Usage
 ### Embedded web server
-Everything you should do is just install [Quartzmin.SelfHost](https://www.nuget.org/packages/Quartzmin.SelfHost) package and configure `QuartzminPlugin` and `ExecutionHistoryPlugin` to support histograms and statistics.
+Everything you should do is just install [Quartzmon.SelfHost](https://www.nuget.org/packages/Quartzmon.SelfHost/) package and configure `QuartzmonPlugin` and `ExecutionHistoryPlugin` to support histograms and statistics.
 
 Run the following command in the Package Manager Console:
 ```powershell
-PM> Install-Package Quartzmin.SelfHost
+PM> Install-Package Quartzmon.SelfHost
 ```
 Add to your `App.config` file:
 ```xml
@@ -65,11 +70,13 @@ Add to your `App.config` file:
   </configSections>
 
   <quartz>
-    <add key="quartz.plugin.quartzmin.type" value="Quartzmin.SelfHost.QuartzminPlugin, Quartzmin.SelfHost" />
-    <add key="quartz.plugin.quartzmin.url" value="http://localhost:5000" />
-      
-    <add key="quartz.plugin.recentHistory.type" value="Quartz.Plugins.RecentHistory.ExecutionHistoryPlugin, Quartz.Plugins.RecentHistory" />
-    <add key="quartz.plugin.recentHistory.storeType" value="Quartz.Plugins.RecentHistory.Impl.InProcExecutionHistoryStore, Quartz.Plugins.RecentHistory" />
+    <add key="quartz.plugin.recentHistory.type" value="Quartzmon.Plugins.RecentHistory.ExecutionHistoryPlugin, Quartzmon.Plugins.RecentHistory" />
+    <add key="quartz.plugin.recentHistory.storeType" value="Quartzmon.Plugins.RecentHistory.Impl.InProcExecutionHistoryStore, Quartzmon.Plugins.RecentHistory" />
+
+    <add key="quartz.plugin.quartzmon.type" value="Quartzmon.SelfHost.QuartzmonPlugin, Quartzmon.SelfHost" />
+    <add key="quartz.plugin.quartzmon.url" value="http://*:333" />
+    <add key="quartz.plugin.quartzmon.useLocalTime" value="true" />
+    <add key="quartz.plugin.quartzmon.defaultDateFormat" value="MM/dd/yyyy" />
   </quartz>
 </configuration>
 ```
@@ -83,7 +90,7 @@ Add to your `Startup.cs` file:
 ```csharp
 public void Configuration(IAppBuilder app)
 {
-    app.UseQuartzmin(new QuartzminOptions()
+    app.UseQuartzmon(new QuartzmonOptions()
     {
         Scheduler = StdSchedulerFactory.GetDefaultScheduler().Result
     });
@@ -95,12 +102,12 @@ Add to your `Startup.cs` file:
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-    services.AddQuartzmin();
+    services.AddQuartzmon();
 }
 
 public void Configure(IApplicationBuilder app)
 {
-    app.UseQuartzmin(new QuartzminOptions()
+    app.UseQuartzmon(new QuartzmonOptions()
     {
         Scheduler = StdSchedulerFactory.GetDefaultScheduler().Result
     });
@@ -108,7 +115,7 @@ public void Configure(IApplicationBuilder app)
 ```
 
 ## Notes
-In clustered environment, it make more sense to host Quarzmin on single dedicated Quartz.NET node in standby mode and implement own `IExecutionHistoryStore` depending on database or ORM framework you typically incorporate. Every clustered Quarz.NET node should be configured with `ExecutionHistoryPlugin` and only dedicated node for management may have `QuartzminPlugin`.
+In clustered environment, it make more sense to host Quarzmon on single dedicated Quartz.NET node in standby mode and implement own `IExecutionHistoryStore` depending on database or ORM framework you typically incorporate. Every clustered Quarz.NET node should be configured with `ExecutionHistoryPlugin` and only dedicated node for management may have `QuartzmonPlugin`.
 
 
 ## License
