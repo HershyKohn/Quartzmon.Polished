@@ -25,6 +25,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore3", "Source\Examp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore31", "Source\Examples\AspNetCore31\AspNetCore31.csproj", "{99D97A4F-703E-42C6-89D2-5752D9707AA5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quartzmon.Plugins.RecentHistory.PostgreSql", "Source\Quartzmon.Plugins.RecentHistory.PostgreSql\Quartzmon.Plugins.RecentHistory.PostgreSql.csproj", "{FBEC9BFE-E8C1-4A15-97D4-00B43C2F7E05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quartzmon.Plugins.RecentHistory.PostgreSql.Tests", "Source\Quartzmon.Plugins.RecentHistory.PostgreSql.Tests\Quartzmon.Plugins.RecentHistory.PostgreSql.Tests.csproj", "{9C762F83-85AB-41A9-928B-B65D753D3B48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +75,14 @@ Global
 		{99D97A4F-703E-42C6-89D2-5752D9707AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99D97A4F-703E-42C6-89D2-5752D9707AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99D97A4F-703E-42C6-89D2-5752D9707AA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBEC9BFE-E8C1-4A15-97D4-00B43C2F7E05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBEC9BFE-E8C1-4A15-97D4-00B43C2F7E05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBEC9BFE-E8C1-4A15-97D4-00B43C2F7E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBEC9BFE-E8C1-4A15-97D4-00B43C2F7E05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C762F83-85AB-41A9-928B-B65D753D3B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C762F83-85AB-41A9-928B-B65D753D3B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C762F83-85AB-41A9-928B-B65D753D3B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C762F83-85AB-41A9-928B-B65D753D3B48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

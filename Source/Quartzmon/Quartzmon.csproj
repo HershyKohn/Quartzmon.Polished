@@ -8,24 +8,24 @@
 		<NoWarn>1591</NoWarn>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 
-		<Version>1.0.5</Version>
+		<Version>0.1.0</Version>
 		<Product>Quartzmon</Product>
 		<Title>Web management tool for Quartz.NET</Title>
 		<Authors>Bryan Denny, Jan Lucansky</Authors>
-		<PackageProjectUrl>https://github.com/mandlar/Quartzmon/</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/Greved/Quartzmon.Polished</PackageProjectUrl>
 		<PackageIconUrl></PackageIconUrl>
-		<Description>Powerful, easy to use web management tool for Quartz.NET</Description>
+		<Description>A fork of Quartzmon. Powerful, easy to use web management tool for Quartz.NET</Description>
 		<PackageTags>quartzmin;quartzmon;quartz;web;ui</PackageTags>
 		<AssemblyVersion>1.0.0.0</AssemblyVersion>
 		<FileVersion>1.0.0.0</FileVersion>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<Copyright>Copyright © 2022 Bryan Denny, Jan Lucansky</Copyright>
 		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/mandlar/Quartzmon/</RepositoryUrl>
+		<RepositoryUrl>https://github.com/Greved/Quartzmon.Polished</RepositoryUrl>
 		<EmbeddedResourceUseDependentUponConvention>false</EmbeddedResourceUseDependentUponConvention>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageId>Quartzmon</PackageId>
+		<PackageId>Quartzmon.Polished</PackageId>
 		<PackageIcon>logo.png</PackageIcon>
 	</PropertyGroup>
 

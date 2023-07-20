@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Update="appSettings.test.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentAssertions" Version="6.11.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
+      <PackageReference Include="NUnit" Version="3.13.3" />
+      <PackageReference Include="Quartz" Version="3.0.7" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Quartzmon.Plugins.RecentHistory.PostgreSql\Quartzmon.Plugins.RecentHistory.PostgreSql.csproj" />
+    </ItemGroup>
+
+</Project>

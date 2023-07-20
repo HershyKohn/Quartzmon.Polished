@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>0.1.6</Version>
+        <Description>Persistance for recent history using PostgreSQL</Description>
+        <PackageProjectUrl>https://github.com/Greved/Quartzmon.Polished</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Greved/Quartzmon.Polished</RepositoryUrl>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Persistance for recent history using PostgreSQL</Title>
+        <Copyright>Copyright © 2022 Andrei Vedmid</Copyright>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>quartzmin;quartzmon;quartz;web;ui;postgresql</PackageTags>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Npgsql" Version="6.0.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Quartzmon.Plugins.RecentHistory\Quartzmon.Plugins.RecentHistory.csproj" />
+    </ItemGroup>
+
+</Project>

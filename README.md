@@ -85,6 +85,28 @@ Start Quartz.NET scheduler somewhere:
 StdSchedulerFactory.GetDefaultScheduler().Result.Start();
 ```
 
+### Persistent recent history
+By default task runs are stored in memory using `InProcExecutionHistoryStore`. But if you need to store them durable then you can use `PostgreSqlExecutionHistoryStore` to store it in PostgreSQL.
+To enable it you should:
+1. Add plugin settings to `App.config` file:
+```xml
+<configuration>
+
+  <quartz>
+    ...
+	<add key="quartz.plugin.recentHistory.type" value="Quartzmon.Plugins.RecentHistory.PostgreSql.PostgreSqlExecutionHistoryPlugin, Quartzmon.Plugins.RecentHistory.PostgreSql" />
+    <add key="quartz.plugin.recentHistory.storeType" value="Quartzmon.Plugins.RecentHistory.PostgreSql.Store.PostgreSqlExecutionHistoryStore, Quartzmon.Plugins.RecentHistory.PostgreSql" />
+    <add key="quartz.plugin.recentHistory.connectionString" value="<connection_string_to_your_DB>" />
+    <add key="quartz.plugin.recentHistory.entryTtlInMinutes" value="60" /> 			<!--TTL of history entries -->
+    <add key="quartz.plugin.recentHistory.purgeIntervalInMinutes" value="1" />		<!--Period for purging outdated history entries -->
+	<add key="quartz.plugin.recentHistory.tablePrefix" value="quartz.qrtz_" />
+	...
+  </quartz>
+</configuration>
+```
+2. Add tables to store history entries to your database by running scripts from `Source/Database/RecentHistory_Tables_PostgreSql.sql` file.
+
+
 ### OWIN middleware
 Add to your `Startup.cs` file:
 ```csharp
