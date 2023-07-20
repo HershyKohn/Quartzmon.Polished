@@ -197,10 +197,8 @@ namespace Quartzmon.Models
 
         public bool RepeatForever { get; set; }
 
-        [Required]
         public TimeSpan? StartTime { get; set; }
 
-        [Required]
         public TimeSpan? EndTime { get; set; }
 
         public string TimeZone { get; set; }
