@@ -10,9 +10,11 @@
         <RepositoryUrl>https://github.com/Greved/Quartzmon.Polished</RepositoryUrl>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>Persistance for recent history using PostgreSQL</Title>
-        <Copyright>Copyright © 2022 Andrei Vedmid</Copyright>
+        <Copyright>Copyright © 2023 Andrei Vedmid</Copyright>
         <RepositoryType>git</RepositoryType>
         <PackageTags>quartzmin;quartzmon;quartz;web;ui;postgresql</PackageTags>
+        <PackageLicenseUrl>LICENSE</PackageLicenseUrl>
+        <PackageIcon>logo.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -21,6 +23,14 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Quartzmon.Plugins.RecentHistory\Quartzmon.Plugins.RecentHistory.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="logo.png" />
+      <EmbeddedResource Include="logo.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </EmbeddedResource>
     </ItemGroup>
 
 </Project>
