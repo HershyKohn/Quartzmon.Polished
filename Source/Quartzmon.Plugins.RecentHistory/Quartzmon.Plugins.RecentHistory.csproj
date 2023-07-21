@@ -7,20 +7,20 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>1591</NoWarn>
 
-    <Version>1.0.5</Version>
+    <Version>0.1.0</Version>
     <Product>Quartzmon.Plugins.RecentHistory</Product>
     <Title>Quartz.NET plugin to persist recent job execution history</Title>
-    <Authors>Bryan Denny, Jan Lucansky</Authors>
-    <PackageProjectUrl>https://github.com/mandlar/Quartzmon/</PackageProjectUrl>
-    <Description>This is supporting package for Quartzmon</Description>
+    <Authors>Bryan Denny, Jan Lucansky. </Authors>
+    <PackageProjectUrl>https://github.com/Greved/Quartzmon.Polished</PackageProjectUrl>
+    <Description>This is supporting package for Quartzmon. It is the fork of Recent History Plugin with custom history stores enabled.</Description>
     <PackageTags>quartzmin;quartzmon;quartz;recent;history</PackageTags>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Copyright>Copyright © 2022 Bryan Denny, Jan Lucansky</Copyright>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/mandlar/Quartzmon/</RepositoryUrl>
-    <PackageId>Quartzmon.Plugins.RecentHistory</PackageId>
+    <RepositoryUrl>https://github.com/Greved/Quartzmon.Polished</RepositoryUrl>
+    <PackageId>Quartzmon.Polished.Plugins.RecentHistory</PackageId>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageIcon>logo.png</PackageIcon>
     <PackageIconUrl />

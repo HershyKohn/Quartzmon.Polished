@@ -239,7 +239,7 @@ namespace Quartzmon.Plugins.RecentHistory.PostgreSql.Store
                     {
                         await sqlCommand.ExecuteNonQueryAsync();
                     }
-                    catch (NpgsqlException e) when (e.SqlState == "22003") // SQL overflow exception
+                    catch (NpgsqlException e) when (e.ErrorCode == 22003) // SQL overflow exception
                     {
                         /*  should actually log here, but Quartz does not expose its
                             logging facilities to external plugins */
