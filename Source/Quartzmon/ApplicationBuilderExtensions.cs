@@ -1,13 +1,12 @@
 ﻿#if ( NETSTANDARD || NETCOREAPP )
 
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using System;
 using System.Reflection;
+using Microsoft.AspNetCore.Internal;
 
 namespace Quartzmon
 {
@@ -67,15 +66,13 @@ namespace Quartzmon
         public static void AddQuartzmon( this IServiceCollection services )
         {
             services.AddControllers()
-                .AddApplicationPart( Assembly.GetExecutingAssembly() )
-                .AddNewtonsoftJson();
+                .AddApplicationPart(Assembly.GetExecutingAssembly());
         }
 #else
         public static void AddQuartzmon( this IServiceCollection services )
         {
             services.AddMvcCore()
-                .AddApplicationPart( Assembly.GetExecutingAssembly() )
-                .AddJsonFormatters();
+                .AddApplicationPart(Assembly.GetExecutingAssembly());
         }
 #endif
 

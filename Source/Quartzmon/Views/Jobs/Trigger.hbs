@@ -9,14 +9,6 @@
         </div>
         <h1 class="ui left floated header">{{ViewBag.Group}}.{{ViewBag.JobName}}<a title="Go to edit page" href="{{ActionUrl 'Edit' group=ViewBag.Group name=ViewBag.JobName}}"><i class="external alternate tiny icon"></i></a></h1>
     </div>
-
-    <div class="ui segment">
-        <input type="hidden" name="name" value="{{ViewBag.JobName}}" id="jobName" />
-        <input type="hidden" name="group" value="{{ViewBag.Group}}" id="jobGroup" />
-        <h3 class="ui dividing header" style="margin-top: .3em">Job Data Map Overrides</h3>
-
-        {{>JobDataMap Model}}
-    </div>
 </form>
 
 <script>
@@ -24,15 +16,11 @@
         initDimmer();
 
         $('#btn-trigger').click(function () {
-
-            if ($('#job-data-map .type-col .ui.dropdown.disabled').length > 0) return; // type change in progress
-
+            
             $('#dimmer').dimmer('show');
 
-            $('#job-data-map').jobDataMapPrepareForm();
-
             const formData = new FormData($('#form')[0]);
-            const msgPanel = $('#job-data-map').parent();
+            const msgPanel = $('#form');
 
             $.ajax({
                 type: 'POST', enctype: 'multipart/form-data', url: '{{ActionUrl "Trigger" group=ViewBag.Group name=ViewBag.JobName}}',

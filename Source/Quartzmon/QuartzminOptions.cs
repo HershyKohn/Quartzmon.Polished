@@ -1,9 +1,5 @@
 ﻿using Quartz;
-using Quartzmon.TypeHandlers;
-using System.Collections.Generic;
 using System.IO;
-
-using Number = Quartzmon.TypeHandlers.NumberHandler.UnderlyingType;
 
 namespace Quartzmon
 {
@@ -22,16 +18,6 @@ namespace Quartzmon
 
         public IScheduler Scheduler { get; set; }
 
-        /// <summary>
-        /// Supported value types in job data map.
-        /// </summary>
-        public List<TypeHandlerBase> StandardTypes { get; } = new List<TypeHandlerBase>();
-
-        /// <summary>
-        /// Default type for new job data map item.
-        /// </summary>
-        public TypeHandlerBase DefaultSelectedType { get; set; }
-
         public string DefaultDateFormat
         {
             get => DateTimeSettings.DefaultDateFormat;
@@ -48,25 +34,6 @@ namespace Quartzmon
         {
             get => DateTimeSettings.UseLocalTime;
             set => DateTimeSettings.UseLocalTime = value;
-        }
-
-        public QuartzmonOptions()
-        {
-            DefaultSelectedType = new StringHandler() { Name = "String" };
-
-            // order of StandardTypes is important due to TypeHandlerBase.CanHandle evaluation
-            StandardTypes.Add(new FileHandler() { Name = "File", DisplayName = "Binary Data" });
-            StandardTypes.Add(new BooleanHandler() { Name = "Boolean" });
-            StandardTypes.Add(new DateTimeHandler() { Name = "Date", DisplayName = "Date", IgnoreTimeComponent = true });
-            StandardTypes.Add(new DateTimeHandler() { Name = "DateTime" });
-            StandardTypes.Add(new DateTimeHandler() { Name = "DateTimeUtc", DisplayName = "DateTime (UTC)", IsUtc = true });
-            StandardTypes.Add(new NumberHandler(Number.Decimal));
-            StandardTypes.Add(new NumberHandler(Number.Double));
-            StandardTypes.Add(new NumberHandler(Number.Float));
-            StandardTypes.Add(new NumberHandler(Number.Integer));
-            StandardTypes.Add(new NumberHandler(Number.Long));
-            StandardTypes.Add(DefaultSelectedType); // String
-            StandardTypes.Add(new StringHandler() { Name = "MultilineString", DisplayName = "String (Multiline)", IsMultiline = true });
         }
 
 #if DEBUG

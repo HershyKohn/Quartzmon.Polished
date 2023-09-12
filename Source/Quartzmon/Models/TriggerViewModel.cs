@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Quartz;
+﻿using Quartz;
 using Quartz.Impl.Matchers;
 using Quartz.Impl.Triggers;
 using Quartzmon.Helpers;
@@ -8,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 using static Quartz.MisfireInstruction;
@@ -517,7 +517,7 @@ namespace Quartzmon.Models
                 },
             };
 
-            return JsonConvert.SerializeObject(validMisfireInstructions, Formatting.None);
+            return JsonSerializer.Serialize(validMisfireInstructions, new JsonSerializerOptions{WriteIndented = false});
         }
 
         public static async Task<TriggerPropertiesViewModel> Create(IScheduler scheduler)

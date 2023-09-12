@@ -1,5 +1,4 @@
-﻿using Quartzmon.TypeHandlers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,9 +10,6 @@ namespace Quartzmon.Models
         public string Name { get; set; }
 
         public object Value { get; set; }
-
-        [Required]
-        public TypeHandlerBase SelectedType { get; set; }
 
         public bool IsLast { get; set; }
 
@@ -39,11 +35,6 @@ namespace Quartzmon.Models
                     result.Name = (string)item.Value;
                     continue;
                 }
-                if (item.Key == HandlerField)
-                {
-                    result.SelectedType = services.TypeHandlers.Deserialize((string)item.Value);
-                    continue;
-                }
                 if (item.Key == TypeField)
                 {
                     continue;
@@ -61,10 +52,7 @@ namespace Quartzmon.Models
 
                 valueFormData.Add(item.Key, item.Value);
             }
-
-            if (result.SelectedType != null)
-                result.Value = result.SelectedType.ConvertFrom(valueFormData);
-
+            
             return result;
         }
 
@@ -85,12 +73,6 @@ namespace Quartzmon.Models
         {
             if (string.IsNullOrEmpty(Name))
                 AddValidationError(NameField, errors);
-
-            if (SelectedType == null)
-                AddValidationError(TypeField, errors);
-
-            if (SelectedType?.IsValid(Value) == false)
-                AddValidationError(ValueField, errors);
         }
 
         void AddValidationError(string field, ICollection<ValidationError> errors)

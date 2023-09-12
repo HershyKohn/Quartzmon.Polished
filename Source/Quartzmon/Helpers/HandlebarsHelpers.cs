@@ -1,6 +1,5 @@
 ﻿using HandlebarsDotNet;
 using Quartzmon.Models;
-using Quartzmon.TypeHandlers;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,8 +7,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 using System.Web;
-
 using static Quartzmon.Controllers.PageControllerBase;
 
 namespace Quartzmon.Helpers
@@ -39,7 +38,6 @@ namespace Quartzmon.Helpers
             h.RegisterHelper("DefaultDateFormat", (o, c, a) => o.Write(DateTimeSettings.DefaultDateFormat));
             h.RegisterHelper("DefaultTimeFormat", (o, c, a) => o.Write(DateTimeSettings.DefaultTimeFormat));
             h.RegisterHelper("DoLayout", (o, c, a) => c.Layout());
-            h.RegisterHelper("SerializeTypeHandler", (o, c, a) => o.WriteSafeString(((Services)a[0]).TypeHandlers.Serialize((TypeHandlerBase)c)));
             h.RegisterHelper("Disabled", (o, c, a) => { if (IsTrue(a[0])) o.Write("disabled"); });
             h.RegisterHelper("Checked", (o, c, a) => { if (IsTrue(a[0])) o.Write("checked"); });
             h.RegisterHelper("nvl", (o, c, a) => o.Write(a[a[0] == null ? 1 : 0]));
@@ -47,7 +45,6 @@ namespace Quartzmon.Helpers
 
             h.RegisterHelper(nameof(BaseUrl), (o, c, a) => o.WriteSafeString(BaseUrl));
             h.RegisterHelper(nameof(MenuItemActionLink), MenuItemActionLink);
-            h.RegisterHelper(nameof(RenderJobDataMapValue), RenderJobDataMapValue);
             h.RegisterHelper(nameof(ViewBag), ViewBag);
             h.RegisterHelper(nameof(ActionUrl), ActionUrl);
             h.RegisterHelper(nameof(Json), Json);
@@ -186,15 +183,9 @@ namespace Quartzmon.Helpers
 
         void Json(TextWriter output, dynamic context, params object[] arguments)
         {
-            output.WriteSafeString(Newtonsoft.Json.JsonConvert.SerializeObject(arguments[0]));
+            output.WriteSafeString(JsonSerializer.Serialize(arguments[0]));
         }
-
-        void RenderJobDataMapValue(TextWriter output, dynamic context, params object[] arguments)
-        {
-            var item = (JobDataMapItem)arguments[1];
-            output.WriteSafeString(item.SelectedType.RenderView((Services)arguments[0], item.Value));
-        }
-
+        
         void isType(TextWriter writer, HelperOptions options, dynamic context, params object[] arguments)
         {
             Type[] expectedType;

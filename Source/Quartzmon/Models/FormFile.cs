@@ -10,12 +10,6 @@ namespace Quartzmon.Models
 
         public Stream GetStream() => _file.OpenReadStream();
 #endif
-#if NETFRAMEWORK
-        readonly System.Net.Http.HttpContent _content;
-        public FormFile(System.Net.Http.HttpContent content) => _content = content;
-
-        public Stream GetStream() => _content.ReadAsStreamAsync().GetAwaiter().GetResult();
-#endif
 
         public byte[] GetBytes()
         {

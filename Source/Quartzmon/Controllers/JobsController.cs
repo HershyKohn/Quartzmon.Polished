@@ -12,10 +12,6 @@ using System.Threading.Tasks;
 #if ( NETSTANDARD || NETCOREAPP )
 using Microsoft.AspNetCore.Mvc;
 #endif
-#if NETFRAMEWORK
-using System.Web.Http;
-using IActionResult = System.Web.Http.IHttpActionResult;
-#endif
 #endregion
 
 namespace Quartzmon.Controllers
@@ -58,13 +54,12 @@ namespace Quartzmon.Controllers
         public async Task<IActionResult> New()
         {
             var job = new JobPropertiesViewModel() { IsNew = true };
-            var jobDataMap = new JobDataMapModel() { Template = JobDataMapItemTemplate };
 
             job.GroupList = (await Scheduler.GetJobGroupNames()).GroupArray();
             job.Group = SchedulerConstants.DefaultGroup;
             job.TypeList = Services.Cache.JobTypes;
 
-            return View("Edit", new JobViewModel() { Job = job, DataMap = jobDataMap });
+            return View("Edit", new JobViewModel() { Job = job });
         }
 
         [HttpGet]
@@ -72,16 +67,10 @@ namespace Quartzmon.Controllers
         {
             if (!EnsureValidKey(name, group)) return BadRequest();
 
-            var jobKey = JobKey.Create(name, group);
-            var job = await GetJobDetail(jobKey);
-            var jobDataMap = new JobDataMapModel() { Template = JobDataMapItemTemplate };
-
             ViewBag.JobName = name;
             ViewBag.Group = group;
 
-            jobDataMap.Items.AddRange(job.GetJobDataMapModel(Services));
-
-            return View(jobDataMap);
+            return View(new JobDataMapModel());
         }
 
         [HttpPost, ActionName("Trigger"), JsonErrorResponse]
@@ -112,7 +101,6 @@ namespace Quartzmon.Controllers
             var job = await GetJobDetail(jobKey);
 
             var jobModel = new JobPropertiesViewModel() { };
-            var jobDataMap = new JobDataMapModel() { Template = JobDataMapItemTemplate };
 
             jobModel.IsNew = clone;
             jobModel.IsCopy = clone;
@@ -129,9 +117,7 @@ namespace Quartzmon.Controllers
             if (clone)
                 jobModel.JobName += " - Copy";
 
-            jobDataMap.Items.AddRange(job.GetJobDataMapModel(Services));
-
-            return View("Edit", new JobViewModel() { Job = jobModel, DataMap = jobDataMap });
+            return View("Edit", new JobViewModel() { Job = jobModel });
         }
 
         private async Task<IJobDetail> GetJobDetail(JobKey key)

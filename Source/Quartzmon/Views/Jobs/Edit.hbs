@@ -74,9 +74,6 @@
             </div>
         </div>
         {{/with}}
-        <h3 class="ui dividing header">Job Data Map</h3>
-
-        {{>JobDataMap Model.DataMap}}
     </div>
 </form>
 
@@ -120,12 +117,8 @@
         });
 
         function save(triggerNow) {
-            if ($('#job-data-map .type-col .ui.dropdown.disabled').length > 0) return; // type change in progress
-
             $('#dimmer').dimmer('show');
-
-            $('#job-data-map').jobDataMapPrepareForm();
-
+            
             var formData = new FormData($('#form')[0]);
 
             $.ajax({

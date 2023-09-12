@@ -1,11 +1,7 @@
-﻿using Quartzmon.TypeHandlers;
-
-namespace Quartzmon.Models
+﻿namespace Quartzmon.Models
 {
     public class JobDataMapItem : JobDataMapItemBase
     {
-        public TypeHandlerBase[] SupportedTypes { get; set; }
-
         public string Description { get; set; }
 
         public bool Enabled { get; set; } = true;

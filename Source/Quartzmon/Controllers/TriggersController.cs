@@ -12,10 +12,6 @@ using System.Threading.Tasks;
 #if ( NETSTANDARD || NETCOREAPP )
 using Microsoft.AspNetCore.Mvc;
 #endif
-#if NETFRAMEWORK
-using System.Web.Http;
-using IActionResult = System.Web.Http.IHttpActionResult;
-#endif
 #endregion
 
 namespace Quartzmon.Controllers
@@ -73,7 +69,7 @@ namespace Quartzmon.Controllers
         public async Task<IActionResult> New()
         {
             var model = await TriggerPropertiesViewModel.Create(Scheduler);
-            var jobDataMap = new JobDataMapModel() { Template = JobDataMapItemTemplate };
+            var jobDataMap = new JobDataMapModel() {  };
 
             model.IsNew = true;
 
@@ -91,7 +87,7 @@ namespace Quartzmon.Controllers
             var key = new TriggerKey(name, group);
             var trigger = await GetTrigger(key);
 
-            var jobDataMap = new JobDataMapModel() { Template = JobDataMapItemTemplate };
+            var jobDataMap = new JobDataMapModel() {  };
 
             var model = await TriggerPropertiesViewModel.Create(Scheduler);
 
@@ -135,8 +131,6 @@ namespace Quartzmon.Controllers
                 default:
                     throw new InvalidOperationException("Unsupported trigger type: " + trigger.GetType().AssemblyQualifiedName);
             }
-
-            jobDataMap.Items.AddRange(trigger.GetJobDataMapModel(Services));
 
             return View("Edit", new TriggerViewModel() { Trigger = model, DataMap = jobDataMap });
         }

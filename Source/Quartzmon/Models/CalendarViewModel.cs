@@ -1,7 +1,6 @@
 ﻿using Quartz;
 using Quartz.Impl.Calendar;
 using Quartzmon.Helpers;
-using Quartzmon.TypeHandlers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

@@ -13,10 +13,6 @@ using System.Globalization;
 #if ( NETSTANDARD || NETCOREAPP )
 using Microsoft.AspNetCore.Mvc;
 #endif
-#if NETFRAMEWORK
-using System.Web.Http;
-using IActionResult = System.Web.Http.IHttpActionResult;
-#endif
 #endregion
 
 namespace Quartzmon.Controllers

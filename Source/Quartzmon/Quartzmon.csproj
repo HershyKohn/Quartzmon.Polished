@@ -1,14 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netcoreapp3.1;net452</TargetFrameworks>
 		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<NoWarn>1591</NoWarn>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 
-		<Version>0.1.0</Version>
+		<Version>0.2.5</Version>
 		<Product>Quartzmon</Product>
 		<Title>Web management tool for Quartz.NET</Title>
 		<Authors>Bryan Denny, Jan Lucansky</Authors>
@@ -27,6 +26,7 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>Quartzmon.Polished</PackageId>
 		<PackageIcon>logo.png</PackageIcon>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(TargetFramework)', '^net\d'))">
@@ -46,20 +46,15 @@
 
 	<ItemGroup>
 		<PackageReference Include="Handlebars.Net" Version="1.9.5" />
-		<PackageReference Include="JsonSubTypes" Version="1.5.1" />
 		<PackageReference Include="Quartz" Version="3.0.7" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(DefineConstants.Contains('NETFRAMEWORK'))">
 		<Reference Include="System.Web" />
 		<Reference Include="System.ComponentModel.DataAnnotations" />
-		<PackageReference Include="Microsoft.AspNet.WebApi" Version="5.2.6" />
-		<PackageReference Include="Microsoft.AspNet.WebApi.Owin" Version="5.2.6" />
-		<PackageReference Include="Microsoft.Owin.StaticFiles" Version="2.1.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(DefineConstants.Contains('NETSTANDARD'))">
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="2.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.0" />
@@ -69,9 +64,6 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(DefineConstants.Contains('NETCOREAPP'))">
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="3.1.0" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="3.1.0" />
 	</ItemGroup>
@@ -91,8 +83,16 @@
 	<ItemGroup>
 		<EmbeddedResource Include="Content\**" />
 		<EmbeddedResource Include="Views\**" />
-		<EmbeddedResource Include="TypeHandlers\*.hbs" />
-		<EmbeddedResource Include="TypeHandlers\*.js" />
 	</ItemGroup>
 
+	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+	  <PackageReference Include="System.Text.Json" Version="7.0.3" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+	  <PackageReference Include="System.Text.Json" Version="7.0.3" />
+	</ItemGroup>
+	<ItemGroup>
+	  <FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 </Project>

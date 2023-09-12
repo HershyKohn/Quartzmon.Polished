@@ -14,8 +14,6 @@ namespace Quartzmon
 
         public IHandlebars Handlebars { get; set; }
 
-        public TypeHandlerService TypeHandlers { get; set; }
-
         public IScheduler Scheduler { get; set; }
 
         internal Cache Cache { get; private set; }
@@ -38,7 +36,6 @@ namespace Quartzmon
             HandlebarsHelpers.Register(services);
 
             services.ViewEngine = new ViewEngine(services);
-            services.TypeHandlers = new TypeHandlerService(services);
             services.Cache = new Cache(services);
 
             return services;

@@ -1,23 +1,17 @@
 ﻿using Quartz;
 using Quartzmon.Models;
-using Quartzmon.TypeHandlers;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using Quartz.Impl.Matchers;
 using Quartzmon.Plugins.RecentHistory;
 
 #region Target-Specific Directives
 #if ( NETSTANDARD || NETCOREAPP )
 using HttpRequest = Microsoft.AspNetCore.Http.HttpRequest;
-#endif
-#if NETFRAMEWORK
-using HttpRequest = System.Net.Http.HttpRequestMessage;
 #endif
 #endregion
 
@@ -25,11 +19,6 @@ namespace Quartzmon
 {
     internal static class Extensions
     {
-        public static TypeHandlerBase[] Order(this IEnumerable<TypeHandlerBase> typeHandlers)
-        {
-            return typeHandlers.OrderBy(x => x.DisplayName).ToArray();
-        }
-
         public static JobDataMapItemBase[] GetModel(this IEnumerable<Dictionary<string, object>> formData, Services services)
         {
             return formData.Select(x => JobDataMapItemBase.FromDictionary(x, services)).Where(x => !x.IsLast).ToArray();
@@ -79,9 +68,6 @@ namespace Quartzmon
                 request.Body.CopyTo(ms);
                 return Encoding.UTF8.GetString(ms.ToArray());
             }
-#endif
-#if NETFRAMEWORK
-            return request.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 #endif
         }
 
@@ -177,89 +163,7 @@ namespace Quartzmon
 
             return builder.ToString();
         }
-
-        public static List<JobDataMapItem> GetJobDataMapModel(this IJobDetail job, Services services) => GetJobDataMapModelCore(job, services);
-        public static List<JobDataMapItem> GetJobDataMapModel(this ITrigger trigger, Services services) => GetJobDataMapModelCore(trigger, services);
-
-        private static List<JobDataMapItem> GetJobDataMapModelCore(object jobOrTrigger, Services services)
-        {
-            List<JobDataMapItem> list = new List<JobDataMapItem>();
-
-            // TODO: doplnit parametre z template na zaklade jobKey; value najprv skonvertovat na ocakavany typ zo sablony
-
-            JobDataMap jobDataMap = null;
-
-            {
-                if (jobOrTrigger is IJobDetail j)
-                    jobDataMap = j.JobDataMap;
-                if (jobOrTrigger is ITrigger t)
-                    jobDataMap = t.JobDataMap;
-            }
-
-            if (jobDataMap == null)
-                throw new ArgumentException("Invalid type.", nameof(jobOrTrigger));
-
-            foreach (var pair in jobDataMap)
-            {
-                JobDataMapItem model;
-
-                model = new JobDataMapItem()
-                {
-                    Enabled = true,
-                    Name = pair.Key,
-                    Value = pair.Value,
-                };
-
-                var typeHandlers = new List<TypeHandlerBase>();
-                typeHandlers.AddRange(services.Options.StandardTypes);
-
-                if (model.Value == null)
-                {
-                    model.SelectedType = services.Options.DefaultSelectedType;
-                }
-                else
-                {
-                    // find the best TypeHandler
-                    foreach (var t in typeHandlers)
-                    {
-                        if (t.CanHandle(model.Value))
-                        {
-                            model.SelectedType = t;
-                            break;
-                        }
-                    }
-
-                    if (model.SelectedType == null) // if there is no suitable TypeHandler, create dynamic one
-                    {
-                        Type t = model.Value.GetType();
-
-                        string strValue;
-                        var m = t.GetMethod(nameof(ToString), BindingFlags.Instance | BindingFlags.Public, null, CallingConventions.Any, new Type[0], null);
-                        if (m.DeclaringType == typeof(object))
-                            strValue = "{" + t.ToString() + "}";
-                        else
-                            strValue = string.Format(CultureInfo.InvariantCulture, "{0}", model.Value);
-
-                        model.SelectedType = new UnsupportedTypeHandler()
-                        {
-                            Name = Guid.NewGuid().ToString("N"), // assure unique name
-                            AssemblyQualifiedName = t.RemoveAssemblyDetails(),
-                            DisplayName = "Unsupported",
-                            StringValue = strValue
-                        };
-
-                        typeHandlers.Add(model.SelectedType);
-                    }
-                }
-
-                model.SupportedTypes = typeHandlers.Order();
-
-                list.Add(model);
-            }
-
-            return list;
-        }
-
+        
         public static Task UpdateJob(this IScheduler scheduler, JobKey jobKey, IJobDetail newJob)
         {
             return Task.Run(async () =>
