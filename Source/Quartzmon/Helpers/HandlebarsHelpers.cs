@@ -65,16 +65,7 @@ namespace Quartzmon.Helpers
 
         string UrlEncode(string value) => HttpUtility.UrlEncode(value);
 
-        string BaseUrl
-        {
-            get
-            {
-                string url = _services.Options.VirtualPathRoot;
-                if (!url.EndsWith("/"))
-                    url += "/";
-                return url;
-            }
-        }
+        string BaseUrl => _services.Options.GetBaseUrl();
 
         private string AddQueryString(string uri, IEnumerable<KeyValuePair<string, object>> queryString)
         {

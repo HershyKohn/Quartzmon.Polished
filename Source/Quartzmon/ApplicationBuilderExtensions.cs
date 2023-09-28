@@ -51,9 +51,14 @@ namespace Quartzmon
             else
                 fs = new PhysicalFileProvider( options.ContentRootDirectory );
 
+            string baseUrl = options.VirtualPathRoot;
+            if (!baseUrl.EndsWith("/"))
+            {
+                baseUrl += "/";
+            }
             var fsOptions = new FileServerOptions()
             {
-                RequestPath = new PathString( $"{options.VirtualPathRoot}/Content" ),
+                RequestPath = new PathString( $"{baseUrl}Content" ),
                 EnableDefaultFiles = false,
                 EnableDirectoryBrowsing = false,
                 FileProvider = fs

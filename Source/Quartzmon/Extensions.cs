@@ -404,5 +404,21 @@ namespace Quartzmon
             return string.Format(CultureInfo.InvariantCulture, "{0:%d} days {0:hh\\:mm}", timeSpan);
         }
 
+        public static string GetBaseUrl(this QuartzmonOptions options)
+        {
+            string url = options.VirtualPathRoot;
+            if (!url.EndsWith("/"))
+            {
+                url += "/";
+            }
+                
+            string urlPrefix = options.UrlPartPrefix;
+            if (string.IsNullOrEmpty(urlPrefix))
+            {
+                return url;
+            }
+
+            return $"{urlPrefix}{url}";
+        }
     }
 }

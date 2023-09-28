@@ -7,7 +7,7 @@
 		<NoWarn>1591</NoWarn>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 
-		<Version>0.2.5</Version>
+		<Version>0.2.10</Version>
 		<Product>Quartzmon</Product>
 		<Title>Web management tool for Quartz.NET</Title>
 		<Authors>Bryan Denny, Jan Lucansky</Authors>
