@@ -156,7 +156,7 @@ namespace Quartzmon.Controllers
 
                 if (jobModel.IsNew)
                 {
-                    await Scheduler.AddJob(BuildJob(JobBuilder.Create().StoreDurably()), replace: false);
+                    await Scheduler.AddJob(BuildJob(JobBuilder.Create().StoreDurably(true)), replace: false);
                 }
                 else
                 {
